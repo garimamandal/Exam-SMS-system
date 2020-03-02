@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+ {
+  border: 1px solid black;
+  background:url(BIT1.jpg);
+  background-size: 100px 80px;
+  background-repeat: no-repeat;
+  padding:15px;
+}
+
+{
+  border: 1px solid black;
+  background:url(BIT2.jpg);
+  background-repeat: no-repeat;
+  padding:15px;
+}
+</style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>

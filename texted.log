@@ -1,0 +1,9 @@
+Line 14: Class MSComDlg.CommonDialog of control cd was not a loaded control class.
+Line 21: Class RichTextLib.RichTextBox of control rt was not a loaded control class.
+Line 17: The property name _ExtentX in cd is invalid.
+Line 18: The property name _ExtentY in cd is invalid.
+Line 19: The property name _Version in cd is invalid.
+Line 27: The property name _ExtentX in rt is invalid.
+Line 28: The property name _ExtentY in rt is invalid.
+Line 29: The property name _Version in rt is invalid.
+Line 31: The property name TextRTF in rt is invalid.

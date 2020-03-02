@@ -1,0 +1,63 @@
+from flask import Flask,render_template,redirect,session,url_for,request
+import pymysql
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+@app.route('/loginfaculty')
+def login():
+
+        if request.method == "POST":
+            a = request.form['u']
+            b = request.form['p']
+            if (a == "x" and b == "y"):
+                session["user"] = "div"
+                return redirect(url_for('index'))
+            else:
+                return "wrong password"
+
+
+        return render_template("loginfaculty.html")
+@app.route('/loginstudent')
+def logins():
+    return render_template("loginstudent.html")
+
+@app.route('/register',methods=["GET","POST"])
+def register():
+    if request.method=="POST":
+        r =request.form['r']
+        n = request.form['n']
+        b= request.form['b']
+        s = request.form['s']
+        m = request.form['m']
+        a = request.form['a']
+        pn = request.form['pn']
+        pm = request.form['pm']
+        db=pymysql.connect('localhost','root','','sms')
+        sql="insert into registration values (%s, %s, %s,%s,%s,%s,%s,%s)"
+        val=(r,n,b,s,m,a,pn,pm)
+        cur=db.cursor()
+        cur.execute(sql,val)
+        print("succesful")
+        db.commit()
+        return render_template("save.html")
+
+
+
+    return render_template("register.html")
+@app.route('/afterlogin')
+def alogin():
+    return render_template("afterlogin.html")
+@app.route('/save')
+def save():
+    return render_template("save.html")
+
+
+
+
+
+#if __name__ == '__main__':
+app.run(port=3433,debug=True)

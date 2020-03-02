@@ -1,0 +1,264 @@
+
+Garima Mandal <garimamandal98@gmail.com>
+Fri, Jul 12, 2019, 10:39 PM
+to vermadikeshwari, DIVYA, anjukashyap109, me
+
+from tkinter import *
+root=Tk()
+from tkinter import messagebox
+import pymysql
+txtno=None
+txtname=None
+txtbch=None
+txtsem=None
+txtmob=None
+txtpass=None
+lques=None
+txtq=None
+txtop1=None
+txtop2=None
+txtop3=None
+txtop4=None
+txtans=None
+txtid=None
+
+db=pymysql.connect('localhost','root','garima','exam')
+def save_question():
+    global txtq,txtop1,txtop2,txtop3,txtop4,txtid,txtans
+    g=txtid.get()
+    a=  txtq.get()
+    b=  txtop1.get()
+    c = txtop2.get()
+    d = txtop3.get()
+    e = txtop4.get()
+    f =txtans.get()
+    sql = "insert into question values(%s,%s,%s,%s,%s,%s,%s)"
+    val = (g,a, b, c, d, e, f)
+    cur = db.cursor()
+    cur.execute(sql, val)
+    messagebox.showinfo("save successfully")
+    db.commit()
+def add_question():
+    global txtq, txtop1, txtop2, txtop3, txtop4, txtid, txtans
+
+    master6=Toplevel()
+    l1 = Label(master6, text="QUESTION ID")
+    l1.grid(row=0, column=0)
+
+    l2=Label(master6,text="QUESTION")
+    l2.grid(row=1,column=0)
+    l3 = Label(master6, text="OPTION 1")
+    l3.grid(row=2, column=0)
+    l4 = Label(master6, text="OPTION 2")
+    l4.grid(row=3, column=0)
+    l5 = Label(master6, text="OPTION 3")
+    l5.grid(row=4, column=0)
+    l6 = Label(master6, text="OPTION 4")
+    l6.grid(row=5, column=0)
+    l7= Label(master6, text="ANSWER")
+    l7.grid(row=6, column=0)
+
+    txtid = Entry(master6)
+    txtid.grid(row=0, column=1)
+    txtq=Entry(master6)
+    txtq.grid(row=1,column=1)
+    txtop1 = Entry(master6)
+    txtop1.grid(row=2, column=1)
+    txtop2 = Entry(master6)
+    txtop2.grid(row=3, column=1)
+    txtop3 = Entry(master6)
+    txtop3.grid(row=4, column=1)
+    txtop4 = Entry(master6)
+    txtop4.grid(row=5, column=1)
+    txtans = Entry(master6)
+    txtans.grid(row=6, column=1)
+
+    save2=Button(master6,text="SAVE",command=save_question)
+    save2.grid(row=7,column=1)
+
+def admin_login():
+    master2=Toplevel()
+    ba1=Button(master2,text="ADD QUESTION",command=add_question)
+    ba1.grid(row=0,column=0)
+    ba2 = Button(master2, text="SAVE")
+    ba2.grid(row=1, column=0)
+    ba3 = Button(master2, text="LOGIN")
+    ba3.grid(row=2, column=0)
+def user():
+    global txtname,txtpass
+    master1=Toplevel()
+    lu1=Label(master1,text="USER")
+    lu1.grid(row=0,column=0)
+    lu2=Label(master1,text="PASSWORD")
+    lu2.grid(row=1,column=0)
+    txtname=Entry(master1)
+    txtname.grid(row=0,column=1)
+    txtpass = Entry(master1,show="*")
+    txtpass.grid(row=1, column=1)
+    b1=Button(master1,text="login",command=admin_login)
+    b1.grid(row=2,column=1)
+def save_student():
+    global txtno, txtname, txtbch ,txtsem  , txtmob, txtpass
+    a=txtno.get()
+    b=txtname.get()
+    c = txtbch.get()
+    d = txtsem.get()
+    e = txtmob.get()
+    f = txtpass.get()
+    sql="insert into student values(%s,%s,%s,%s,%s,%s)"
+    val=(a,b,c,d,e,f)
+    cur=db.cursor()
+    cur.execute(sql,val)
+    messagebox.showinfo("save successfully")
+    db.commit()
+def stu_reg():
+    global txtno, txtname, txtbch ,txtsem  , txtmob, txtpass
+
+    master3=Toplevel()
+    ls1=Label(master3, text="ROLL NO")
+    ls1.grid(row=0,column=0)
+    txtno=Entry(master3)
+    txtno.grid(row=0,column=1)
+
+    ls2 = Label(master3, text="NAME")
+    ls2.grid(row=1, column=0)
+    txtname = Entry(master3)
+    txtname.grid(row=1, column=1)
+
+    ls3 = Label(master3, text="BRANCH")
+    ls3.grid(row=2, column=0)
+    txtbch = Entry(master3)
+    txtbch.grid(row=2, column=1)
+
+    ls4 = Label(master3, text="SEMESTER")
+    ls4.grid(row=3, column=0)
+    txtsem = Entry(master3)
+    txtsem.grid(row=3, column=1)
+
+    ls5 = Label(master3, text="MOBILE")
+    ls5.grid(row=4, column=0)
+    txtmob = Entry(master3)
+    txtmob.grid(row=4, column=1)
+
+    ls6 = Label(master3, text="PASSWORD")
+    ls6.grid(row=5, column=0)
+    txtpass = Entry(master3)
+    txtpass.grid(row=5, column=1)
+
+    bsave=Button(master3,text="SAVE",command=save_student)
+    bsave.grid(row=6,column=2)
+def show_question1():
+    global lques
+
+    sql = "select * from question where qid=1"
+    cur = db.cursor()
+    cur.execute(sql)
+    result = cur.fetchall()
+    for row in result:
+        lques.config(text=row[1])
+
+
+def exam():
+    global lques
+
+    master7=Toplevel()
+    fr1=Frame(master7)
+    fr2=Frame(master7)
+    fr1.grid(row=0,column=0)
+    fr2.grid(row=0, column=1)
+    b1=Button(fr1,text="1",command=show_question1)
+    b1.grid(row=0,column=0)
+    b2= Button(fr1,text="2")
+    b2.grid(row=0, column=1)
+    b3 = Button(fr1,text="3")
+    b3.grid(row=0, column=2)
+    b4 = Button(fr1,text="4")
+    b4.grid(row=1, column=0)
+    b5 = Button(fr1,text="5")
+    b5.grid(row=1, column=1)
+    b6 = Button(fr1,text="6")
+    b6.grid(row=1, column=2)
+    b7= Button(fr1,text="7")
+    b7.grid(row=2, column=0)
+    b8 = Button(fr1,text="8")
+    b8.grid(row=2, column=1)
+    b9 = Button(fr1,text="9")
+    b9.grid(row=2, column=2)
+    b10 = Button(fr1,text="10")
+    b10.grid(row=3, column=0)
+    lques=Label(fr2,text="QUES=                                                                                                      ")
+    lques.grid(row=0,column=0)
+    r1=Radiobutton(fr2,text="A",value=1)
+    r2=Radiobutton(fr2,text="B",value=2)
+    r3=Radiobutton(fr2,text="C",value=3)
+    r4=Radiobutton(fr2,text="D",value=4)
+    r1.grid(row=1,column=0)
+    r2.grid(row=1, column=2)
+    r3.grid(row=2, column=0)
+    r4.grid(row=2, column=2)
+    txtop1=Entry(fr2)
+    txtop2 =Entry(fr2)
+    txtop3 =Entry(fr2)
+    txtop4 =Entry(fr2)
+    txtop1.grid(row=1,column=1)
+    txtop2.grid(row=1, column=3)
+    txtop3.grid(row=2, column=1)
+    txtop4.grid(row=2, column=3)
+    bnext=Button(fr2,text="NEXT")
+    bnext.grid(row=3,column=0)
+    bans = Button(fr2, text="ANSWER")
+    bans.grid(row=3, column=1)
+    bfinish = Button(fr2, text="FINISH")
+    bfinish.grid(row=3, column=2)
+
+
+
+def chk_login():
+    global txtname, txtpass
+    c=0
+    sql="select * from student where name=%s and password=%s"
+    a=txtname.get()
+    b=txtpass.get()
+    val=(a,b)
+    cur=db.cursor()
+    cur.execute(sql,val)
+    result=cur.fetchall()
+    for row in result:
+        c=c+1
+    if c==1:
+        master5=Toplevel()
+        b1=Button(master5,text="EXAM",command=exam)
+        b2 = Button(master5, text="SCORE")
+        b3 = Button(master5, text="LOGOUT")
+        b1.grid(row=0,column=0)
+        b2.grid(row=1, column=0)
+        b3.grid(row=2, column=0)
+    else:
+        messagebox.showinfo("NOT FOUND","invalid")
+
+
+
+def stu_login():
+    global txtname, txtpass
+    master4 = Toplevel()
+    lu1 = Label(master4, text="USER")
+    lu1.grid(row=0, column=0)
+    lu2 = Label(master4, text="PASSWORD")
+    lu2.grid(row=1, column=0)
+    txtname = Entry(master4)
+    txtname.grid(row=0, column=1)
+    txtpass = Entry(master4, show="*")
+    txtpass.grid(row=1, column=1)
+    b1 = Button(master4, text="login", command=chk_login)
+    b1.grid(row=2, column=1)
+
+
+l1=Label(text="EXAM SYSTEM",font=("Arial",40))
+l1.grid(row=0,column=2)
+admbtn=Button(text="ADMIN",command=user)
+logbtn=Button(text="STUDENT LOGIN",command=stu_login)
+regbtn=Button(text="STUDENT REGISTER",command=stu_reg)
+admbtn.grid(row=1,column=2)
+logbtn.grid(row=2,column=2)
+regbtn.grid(row=3,column=2)
+mainloop()

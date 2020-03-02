@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../static/jquery.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+<div class="carousel-inner">
+    <div class="item active">
+      <img src="../static/BIT1.jpg" style="width: 100%;height: 200px;" alt="Los Angeles">
+    </div>
+
+    <div class="item">
+      <img src="../static/BIT2.jpg" style="width: 100%;height: 200px;" alt="Chicago">
+    </div>
+
+    <div class="item">
+      <img src="../static/BIT3.jpg" style="width: 100%;height: 200px;" alt="New York">
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Sms System</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="/loginfacult">Login as Faculty</a></li>
+      <li><a href="/loginstudent">Login as Student</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
+  </div>
+</nav>
+<table class="table">
+    <tr>
+        <td>Username</td>
+        <td><input type="text" class="form-control"placeholder="Enter name" name="u"> </td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td><input type="password" class="form-control" placeholder="password" name="p"> </td>
+    </tr>
+    <tr>
+        <td>
+    <div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
+    </div></td>
+    </div>
+    </tr>
+    <tr>
+
+        <td><input type="submit" value="login" class="btn btn-danger"> </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
